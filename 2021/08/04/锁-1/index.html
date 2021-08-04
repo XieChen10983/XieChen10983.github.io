@@ -20,19 +20,19 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+  <meta name="description" content="锁1. 加锁的目的 加锁的目的是保证共享资源在任意的时间内只有一个线程访问，避免多线程导致共享数据错乱的问题。当已经有一个线程加锁之后，其他线程加锁就会失效。  2. 互斥锁vs自旋锁 加锁失效之后，互斥锁会切换线程，释放CPU，相应的线程被阻塞，而自旋锁则在忙等。  互斥锁加锁是在用户态，加锁失败之后会从用户态切换到内核态，让内核切换线程，切换线程会造成一定的开销——加锁失败（运行-&gt;睡眠">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://example.com/2021/08/03/hello-world/index.html">
+<meta property="og:title" content="锁">
+<meta property="og:url" content="http://example.com/2021/08/04/%E9%94%81-1/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="锁1. 加锁的目的 加锁的目的是保证共享资源在任意的时间内只有一个线程访问，避免多线程导致共享数据错乱的问题。当已经有一个线程加锁之后，其他线程加锁就会失效。  2. 互斥锁vs自旋锁 加锁失效之后，互斥锁会切换线程，释放CPU，相应的线程被阻塞，而自旋锁则在忙等。  互斥锁加锁是在用户态，加锁失败之后会从用户态切换到内核态，让内核切换线程，切换线程会造成一定的开销——加锁失败（运行-&gt;睡眠">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-08-03T13:01:03.344Z">
-<meta property="article:modified_time" content="2021-08-03T13:01:03.344Z">
+<meta property="article:published_time" content="2021-08-04T06:19:09.000Z">
+<meta property="article:modified_time" content="2021-08-04T06:19:24.044Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/2021/08/03/hello-world/">
+<link rel="canonical" href="http://example.com/2021/08/04/%E9%94%81-1/">
 
 
 <script id="page-configurations">
@@ -45,7 +45,7 @@
   };
 </script>
 
-  <title>Hello World | Hexo</title>
+  <title>锁 | Hexo</title>
   
 
 
@@ -150,7 +150,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/08/03/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/08/04/%E9%94%81-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -163,7 +163,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Hello World
+          锁
         </h1>
 
         <div class="post-meta">
@@ -172,8 +172,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
+              
 
-              <time title="Created: 2021-08-03 21:01:03" itemprop="dateCreated datePublished" datetime="2021-08-03T21:01:03+08:00">2021-08-03</time>
+              <time title="Created: 2021-08-04 14:19:09 / Modified: 14:19:24" itemprop="dateCreated datePublished" datetime="2021-08-04T14:19:09+08:00">2021-08-04</time>
             </span>
 
           
@@ -187,19 +188,49 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+        <h1 id="锁"><a href="#锁" class="headerlink" title="锁"></a>锁</h1><h2 id="1-加锁的目的"><a href="#1-加锁的目的" class="headerlink" title="1. 加锁的目的"></a>1. 加锁的目的</h2><ul>
+<li>加锁的目的是保证共享资源在任意的时间内只有一个线程访问，避免多线程导致共享数据错乱的问题。当已经有一个线程加锁之后，其他线程加锁就会失效。</li>
+</ul>
+<h2 id="2-互斥锁vs自旋锁"><a href="#2-互斥锁vs自旋锁" class="headerlink" title="2. 互斥锁vs自旋锁"></a>2. 互斥锁vs自旋锁</h2><ul>
+<li><p>加锁失效之后，互斥锁会切换线程，释放CPU，相应的线程被阻塞，而自旋锁则在忙等。</p>
+</li>
+<li><p>互斥锁加锁是在用户态，加锁失败之后会从用户态切换到内核态，让内核切换线程，切换线程会造成一定的开销——加锁失败（运行-&gt;睡眠），锁被释放（睡眠-&gt;就绪），进程内存资源是共享的，只需要切换线程私有数据。</p>
+</li>
+<li><p>自旋锁则是通过CPU提供的CAS函数，仅在用户态完成加锁和解锁操作，不会产生上下文的切换，因此开销更小更快。加锁失败的线程会忙等，可用while实现或者CPU的PAUSE。自旋锁在单核CPU上需要抢占式的调度器，否则将不会放弃CPU，造成无法使用。</p>
+</li>
+<li><p>如果能确定被锁住的代码执行时间很短，就不应该使用互斥锁，应该使用自旋锁。自旋锁适合异步、协程的编程方式。</p>
+</li>
+</ul>
+<h2 id="3-读写锁"><a href="#3-读写锁" class="headerlink" title="3. 读写锁"></a>3. 读写锁</h2><ul>
+<li><p>读写锁由读锁和写锁两部分构成，如果只读取共享资源用读锁加锁，如果要修改共享资源则用写锁加锁。</p>
+</li>
+<li><p>当写锁没有被线程持有时，多线程能够并发地持有读锁，大大提高了共享资源的访问效率。</p>
+</li>
+<li><p>当写锁被线程所持有时，读线程的读操作和其他写线程的获取写锁的操作也会被阻塞。因此写锁时独占锁，类似互斥锁和自旋锁；而  读锁则是共享锁。</p>
+</li>
+<li><p>读写锁适用于读多写少的场景。</p>
+</li>
+<li><p>读写锁可以分为读优先锁和写优先锁</p>
+<ul>
+<li><p>读优先锁：当先持有读锁，写线程获取写锁的时候会被阻塞，后序来的其他读线程仍可以获取写锁（即优先处理后序来的读线程）。</p>
+</li>
+<li><p>写优先锁：当先持有读锁，写线程获取写锁的时候会被阻塞，但是后序来的其他读线程不能获取写锁，释放当前的读锁之后，写锁将被获取。</p>
+</li>
+<li><p>两者分别会造成写线程饥饿和读线程饥饿的现象，可以使用公平读写锁的方式，用队列把获取锁的线程排对，全部按照先进先出的原则加锁。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-读写锁"><a href="#4-读写锁" class="headerlink" title="4. 读写锁"></a>4. 读写锁</h2><ul>
+<li><p>互斥锁、自旋锁、读写锁都属于悲观锁</p>
+</li>
+<li><p>悲观锁认为多线程同时修改共享资源的概率比较高，容易出现冲突，因此在访问共享资源之前先上锁。</p>
+</li>
+<li><p>乐观锁全程没有上锁。其工作方式是：先修改完共享资源，再验证这段时间内是否发生冲突，如果没有其他线程对共享资源进行修改，则操作完成。如果共享资源已经被其他线程所改动，则放弃本次操作。</p>
+</li>
+<li><p>乐观锁：在线文档、Git：适用于冲突概率非常低，加锁成本非常高的场景。</p>
+</li>
+</ul>
 
     </div>
 
@@ -213,13 +244,6 @@
 
 
         
-    <div class="post-nav">
-      <div class="post-nav-item"></div>
-      <div class="post-nav-item">
-    <a href="/2021/08/03/myFirstBlog/" rel="next" title="myFirstBlog">
-      myFirstBlog <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
       </footer>
     
   </article>
@@ -277,7 +301,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%94%81"><span class="nav-number">1.</span> <span class="nav-text">锁</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%8A%A0%E9%94%81%E7%9A%84%E7%9B%AE%E7%9A%84"><span class="nav-number">1.1.</span> <span class="nav-text">1. 加锁的目的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E4%BA%92%E6%96%A5%E9%94%81vs%E8%87%AA%E6%97%8B%E9%94%81"><span class="nav-number">1.2.</span> <span class="nav-text">2. 互斥锁vs自旋锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E8%AF%BB%E5%86%99%E9%94%81"><span class="nav-number">1.3.</span> <span class="nav-text">3. 读写锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E8%AF%BB%E5%86%99%E9%94%81"><span class="nav-number">1.4.</span> <span class="nav-text">4. 读写锁</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -291,7 +315,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-count">1</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
