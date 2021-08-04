@@ -145,7 +145,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/08/03/blog/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/08/03/%E9%94%81/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -159,7 +159,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/08/03/blog/" class="post-title-link" itemprop="url">blog</a>
+            <a href="/2021/08/03/%E9%94%81/" class="post-title-link" itemprop="url">我的第一篇blog</a>
         </h2>
 
         <div class="post-meta">
@@ -171,6 +171,13 @@
 
               <time title="Created: 2021-08-03 21:57:55" itemprop="dateCreated datePublished" datetime="2021-08-03T21:57:55+08:00">2021-08-03</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-08-04 13:56:55" itemprop="dateModified" datetime="2021-08-04T13:56:55+08:00">2021-08-04</time>
+              </span>
 
           
 
@@ -183,7 +190,50 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          
+          <h1 id="锁"><a href="#锁" class="headerlink" title="锁"></a>锁</h1><h2 id="1-加锁的目的"><a href="#1-加锁的目的" class="headerlink" title="1. 加锁的目的"></a>1. 加锁的目的</h2><ul>
+<li>加锁的目的是保证共享资源在任意的时间内只有一个线程访问，避免多线程导致共享数据错乱的问题。当已经有一个线程加锁之后，其他线程加锁就会失效。</li>
+</ul>
+<h2 id="2-互斥锁vs自旋锁"><a href="#2-互斥锁vs自旋锁" class="headerlink" title="2. 互斥锁vs自旋锁"></a>2. 互斥锁vs自旋锁</h2><ul>
+<li><p>加锁失效之后，互斥锁会切换线程，释放CPU，相应的线程被阻塞，而自旋锁则在忙等。</p>
+</li>
+<li><p>互斥锁加锁是在用户态，加锁失败之后会从用户态切换到内核态，让内核切换线程，切换线程会造成一定的开销——加锁失败（运行-&gt;睡眠），锁被释放（睡眠-&gt;就绪），进程内存资源是共享的，只需要切换线程私有数据。</p>
+</li>
+<li><p>自旋锁则是通过CPU提供的CAS函数，仅在用户态完成加锁和解锁操作，不会产生上下文的切换，因此开销更小更快。加锁失败的线程会忙等，可用while实现或者CPU的PAUSE。自旋锁在单核CPU上需要抢占式的调度器，否则将不会放弃CPU，造成无法使用。</p>
+</li>
+<li><p>如果能确定被锁住的代码执行时间很短，就不应该使用互斥锁，应该使用自旋锁。自旋锁适合异步、协程的编程方式。</p>
+</li>
+</ul>
+<h2 id="3-读写锁"><a href="#3-读写锁" class="headerlink" title="3. 读写锁"></a>3. 读写锁</h2><ul>
+<li><p>读写锁由读锁和写锁两部分构成，如果只读取共享资源用读锁加锁，如果要修改共享资源则用写锁加锁。</p>
+</li>
+<li><p>当写锁没有被线程持有时，多线程能够并发地持有读锁，大大提高了共享资源的访问效率。</p>
+</li>
+<li><p>当写锁被线程所持有时，读线程的读操作和其他写线程的获取写锁的操作也会被阻塞。因此写锁时独占锁，类似互斥锁和自旋锁；而  读锁则是共享锁。</p>
+</li>
+<li><p>读写锁适用于读多写少的场景。</p>
+</li>
+<li><p>读写锁可以分为读优先锁和写优先锁</p>
+<ul>
+<li><p>读优先锁：当先持有读锁，写线程获取写锁的时候会被阻塞，后序来的其他读线程仍可以获取写锁（即优先处理后序来的读线程）。</p>
+</li>
+<li><p>写优先锁：当先持有读锁，写线程获取写锁的时候会被阻塞，但是后序来的其他读线程不能获取写锁，释放当前的读锁之后，写锁将被获取。</p>
+</li>
+<li><p>两者分别会造成写线程饥饿和读线程饥饿的现象，可以使用公平读写锁的方式，用队列把获取锁的线程排对，全部按照先进先出的原则加锁。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-读写锁"><a href="#4-读写锁" class="headerlink" title="4. 读写锁"></a>4. 读写锁</h2><ul>
+<li><p>互斥锁、自旋锁、读写锁都属于悲观锁</p>
+</li>
+<li><p>悲观锁认为多线程同时修改共享资源的概率比较高，容易出现冲突，因此在访问共享资源之前先上锁。</p>
+</li>
+<li><p>乐观锁全程没有上锁。其工作方式是：先修改完共享资源，再验证这段时间内是否发生冲突，如果没有其他线程对共享资源进行修改，则操作完成。如果共享资源已经被其他线程所改动，则放弃本次操作。</p>
+</li>
+<li><p>乐观锁：在线文档、Git：适用于冲突概率非常低，加锁成本非常高的场景。</p>
+</li>
+</ul>
+
       
     </div>
 
