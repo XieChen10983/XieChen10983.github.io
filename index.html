@@ -83,6 +83,84 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2021/08/04/设计模式/" title="设计模式" itemprop="url">设计模式</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Channing Xie" target="_blank" itemprop="author">Channing Xie</a>
+		
+  <p class="article-time">
+    <time datetime="2021-08-04T08:22:57.000Z" itemprop="datePublished"> Published 2021-08-04</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h2 id="设计模式的原则"><a href="#设计模式的原则" class="headerlink" title="设计模式的原则"></a>设计模式的原则</h2><h4 id="1-开放-封闭原则"><a href="#1-开放-封闭原则" class="headerlink" title="1. 开放-封闭原则"></a>1. 开放-封闭原则</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">类的改动是通过增加代码进行的，而不是修改源代码————对扩展开放，对修改关闭。</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>计算器类：包含加法、减法、乘法等 -&gt; 计算器抽象类+加法计算器类+减法计算器类+…</li>
+</ul>
+<h4 id="2-依赖倒转原则"><a href="#2-依赖倒转原则" class="headerlink" title="2. 依赖倒转原则"></a>2. 依赖倒转原则</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">依赖于抽象接口，不要依赖具体的实现————正对接口编程</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>计算函数传入一个计算器的抽象类：函数运行的时候则根据传入的具体类分别进行计算。</li>
+</ul>
+<h4 id="3-单一职责原则"><a href="#3-单一职责原则" class="headerlink" title="3. 单一职责原则"></a>3. 单一职责原则</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">类的职责单一，对外只提供一种功能，而引起类变化的原因都应该只有一个。</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-接口隔离原则"><a href="#4-接口隔离原则" class="headerlink" title="4. 接口隔离原则"></a>4. 接口隔离原则</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">一个接口应该只提供一种对外功能，不应该把所有的操作都封装到一个接口中。</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-里氏替换原则-LSP"><a href="#5-里氏替换原则-LSP" class="headerlink" title="5. 里氏替换原则(LSP)"></a>5. 里氏替换原则(LSP)</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">虚拟机制：任何抽象类出现的地方都可以用他的实现类进行替换。</span><br></pre></td></tr></table></figure>
+
+<h4 id="6-迪米特法则——最少知识原则"><a href="#6-迪米特法则——最少知识原则" class="headerlink" title="6. 迪米特法则——最少知识原则"></a>6. 迪米特法则——最少知识原则</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">一个对象应该对其他对象尽可能少的了解，从而降低各个对象的耦合性。各模块相互调用时，应有统一的接口实现。</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>楼盘销售类：多个类时，可以提供一个管理接口——销售类，只需要和销售类打交道即可。</li>
+</ul>
+<h4 id="7-合成复用原则"><a href="#7-合成复用原则" class="headerlink" title="7. 合成复用原则"></a>7. 合成复用原则</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">如果使用继承会导致父类的任何变换都可能影响子类的行为。如果使用对象组合，就降低了这种依赖关系。因此相对于继承应该优先选择组合。</span><br></pre></td></tr></table></figure>
+
+<h4 id="8-设计模式的分类"><a href="#8-设计模式的分类" class="headerlink" title="8. 设计模式的分类"></a>8. 设计模式的分类</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">（1） 23 + 1(简单工厂模式————不属于23之一)</span><br><span class="line">（2） 分类：</span><br><span class="line">    A. 创建型</span><br><span class="line">    B. 结构型</span><br><span class="line">    C. 行为型</span><br></pre></td></tr></table></figure>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+</div>
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2021/08/04/调度算法/" title="调度算法" itemprop="url">调度算法</a>
   </h1>
   <p class="article-author">By
@@ -316,6 +394,10 @@
 		
 		  
 			<li><a href="/categories/操作系统/" title="操作系统">操作系统<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/设计模式/" title="设计模式">设计模式<sup>1</sup></a></li>
 		  
 		
 		</ul>
